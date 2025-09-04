@@ -1,0 +1,40 @@
+load("d_HHP2020_24.RData")
+#glipmse(d_HHP2020_24)try this later 
+d_HHP2020_24[1:10,1:6]
+summary(d_HHP2020_24)
+names(d_HHP2020_24)
+summary(d_HHP2020_24$Age[d_HHP2020_24$Gender == "female"])
+summary(d_HHP2020_24$Age[d_HHP2020_24$Gender == "male"])
+sd(d_HHP2020_24$Age[d_HHP2020_24$Gender == "male"]) # standard deviation 
+sd(d_HHP2020_24$Age[d_HHP2020_24$Gender == "female"])# standard deviation 
+table(d_HHP2020_24$Gender, d_HHP2020_24$private_health_ins)
+prop.table(table(d_HHP2020_24$Gender, d_HHP2020_24$private_health_ins), 1)# Gender differences in health insurance
+aggregate(income_midpoint ~ Number_people_HH, data = d_HHP2020_24, mean) # Household size vs. income
+
+attach(d_HHP2020_24)
+summary(K4SUM[private_health_ins == "has private health insurance"])
+summary(K4SUM[private_health_ins == "no private health insurance"])
+summary(K4SUM[public_health_ins == "no public health insurance"])
+summary(K4SUM[public_health_ins == "has public health insurance"])
+
+d_HHP2020_24 %>%
+  group_by(State) %>%
+  summarise(private_rate = mean(private_health_ins == "has private health insurance", na.rm = TRUE)) %>%
+  arrange(private_rate)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
